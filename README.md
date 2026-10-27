@@ -9,7 +9,7 @@ Note: It's not as complete as the glTF specification yet, but because it's strai
 
 If you would like to contribute, don't hesitate! :)
 
-Note: The main branch is for the latest Zig release (0.15.1).
+Note: The main branch is for the latest Zig release (0.16.0).
 
 ## Examples
 
@@ -124,15 +124,18 @@ for (primitive.attributes.items) |attribute| {
 
 ## Install
 
-Note: **Zig 0.15.1 is required.**
+Note: **Zig 0.16.0 is required.**
 
 ```sh
 zig fetch --save git+https://github.com/kooparse/zgltf
 ```
 
 ```zig
-const zgltf = b.dependency("zgltf", .{});
-exe.addModule("zgltf", zgltf.module("zgltf"));
+const zgltf = b.dependency("zgltf", .{
+    .target = target,
+    .optimize = optimize,
+});
+exe.root_module.addImport("zgltf", zgltf.module("zgltf"));
 ```
 
 ## Features
